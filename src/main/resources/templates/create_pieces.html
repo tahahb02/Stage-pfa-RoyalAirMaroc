@@ -13,7 +13,7 @@
 
 </nav>
 <h1>Créer Pièce</h1>
-<form th:action="@{/pieces/{id}(id=${piece.id})}" th:object="${piece}" method="post">
+<form th:action="@{/pieces}" th:object="${piece}" method="post">
     <label>Nom: <input type="text" th:field="*{name}" /></label><br/>
     <label>Description: <input type="text" th:field="*{description}" /></label><br/>
     <label>Prix: <input type="number" th:field="*{price}" step="0.01" /></label><br/>

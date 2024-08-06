@@ -27,7 +27,7 @@ public class LoginController {
         Utilisateur user = userService.findByEmail(email);
 
         // Check if user exists and password matches
-        if (user != null && user.getMotDePasse().equals(password)) { // For real applications, compare hashed passwords
+        if (user != null && user.getMot_de_passe().equals(password)) { // For real applications, compare hashed passwords
             if (role.equalsIgnoreCase(user.getRole())) {
                 if ("technicien".equalsIgnoreCase(user.getRole())) {
                     return "redirect:/home_tech";

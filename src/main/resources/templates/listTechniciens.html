@@ -25,6 +25,7 @@
     <thead>
     <tr>
         <th>Nom</th>
+        <th>Prenom</th>
         <th>E-Mail</th>
         <th>Mot de passe</th>
         <th>Actions</th>
@@ -34,6 +35,7 @@
     <!-- Utilisation de Thymeleaf pour itérer à travers les techniciens -->
     <tr th:each="technicien : ${techniciens}">
         <td th:text="${technicien.nom}">Nom</td>
+        <td th:text="${technicien.prenom}">Prenom</td>
         <td th:text="${technicien.email}">E-Mail</td>
         <td th:text="${technicien.mot_de_passe}">Mot de passe</td>
         <td>

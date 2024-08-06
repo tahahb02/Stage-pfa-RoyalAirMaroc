@@ -13,6 +13,7 @@
 <h1>Ajouter un Technicien</h1>
 <form th:action="@{/listTechniciens}" method="post" class="form-new-technicien">
     <label>Nom: <input type="text" name="nom" required /></label><br/>
+    <label>Prenom: <input type="text" name="prenom" required /></label><br/>
     <label>Email: <input type="email" name="email" required /></label><br/>
     <label>Mot de passe: <input type="password" name="mot_de_passe" required /></label><br/>
     <input type="hidden" name="role" value="technicien" />

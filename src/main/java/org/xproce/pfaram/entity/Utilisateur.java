@@ -13,7 +13,7 @@ public class Utilisateur {
     private Long id;
 
     private String email;
-    private String motDePasse;
+    private String mot_de_passe;
     private String nom;
     private String prenom;
     private String role;
@@ -35,30 +35,29 @@ public class Utilisateur {
         this.email = email;
     }
 
-    public String getMotDePasse() {
-        return motDePasse;
+    public String getMot_de_passe() {
+        return mot_de_passe;
     }
 
-    public void setMotDePasse(String motDePasse) {
-        this.motDePasse = motDePasse;
+    public void setMot_de_passe(String mot_de_passe) {
+        this.mot_de_passe = mot_de_passe;
     }
 
     public String getNom() {
         return nom;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public String getPrenom() {
         return prenom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
-
 
     public String getRole() {
         return role;

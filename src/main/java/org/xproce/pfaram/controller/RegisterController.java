@@ -36,7 +36,7 @@ public class RegisterController {
         // Create and save the user
         Utilisateur user = new Utilisateur();
         user.setEmail(email);
-        user.setMotDePasse(password); // For real applications, use a hashed password
+        user.setMot_de_passe(password);
         user.setNom(nom);
         user.setPrenom(prenom);
         user.setRole(role);
