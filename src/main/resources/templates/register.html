@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inscription</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/register.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<nav>
+    <a href="/login">Connexion</a>
+</nav>
+<h1>Inscription</h1>
+
+<form th:action="@{/register}" method="post" class="form-register">
+    <label>Nom: <input type="text" name="nom" required /></label><br/>
+    <label>Prénom: <input type="text" name="prenom" required /></label><br/>
+    <label>Email: <input type="email" name="email" required /></label><br/>
+    <label>Mot de passe: <input type="password" name="password" required /></label><br/>
+    <label>Confirmer mot de passe: <input type="password" name="confirmPassword" required /></label><br/>
+    <label>Rôle:
+        <select name="role">
+            <option value="superviseur">Superviseur</option>
+            <option value="technicien">Technicien</option>
+        </select>
+    </label><br/>
+    <button type="submit" class="btn">S'inscrire</button>
+</form>
+
+<script>
+    // Affichage du message d'erreur
+    /*[[${#strings.escapeJavaScript(error)}]]*/ const errorMessage = /*[[${error}]]*/ '';
+    if (errorMessage) {
+        alert(errorMessage);
+    }
+</script>
+
+</body>
+</html>

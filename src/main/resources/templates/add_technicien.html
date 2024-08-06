@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter un Technicien</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/new_technicien.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<nav>
+    <a href="/home_sup">Accueil</a>
+    <a href="/listTechniciens">Liste des Techniciens</a>
+</nav>
+<h1>Ajouter un Technicien</h1>
+<form th:action="@{/listTechniciens}" method="post" class="form-new-technicien">
+    <label>Nom: <input type="text" name="nom" required /></label><br/>
+    <label>Email: <input type="email" name="email" required /></label><br/>
+    <label>Mot de passe: <input type="password" name="mot_de_passe" required /></label><br/>
+    <input type="hidden" name="role" value="technicien" />
+    <button type="submit" class="btn">Ajouter</button>
+</form>
+</body>
+</html>

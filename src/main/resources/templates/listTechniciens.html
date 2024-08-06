@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/listTechniciens.css}">
+    <title>Liste des Techniciens</title>
+</head>
+<body>
+<nav>
+    <a href="/home_sup">Accueil</a>
+    <a href="/listTechniciens">Liste des Techniciens</a>
+    <a href="/listTechniciens/new">Ajouter un Technicien</a>
+</nav>
+<h1>Liste des Techniciens</h1>
+
+<!-- Barre de recherche -->
+<div class="search-container">
+    <form action="/listTechniciens/search" method="get" class="search-box">
+        <input type="text" name="query" class="search-input" placeholder="Rechercher un Technicien..." />
+        <button type="submit" class="search-button"><i class="fas fa-search"></i> Rechercher</button>
+    </form>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>E-Mail</th>
+        <th>Mot de passe</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Utilisation de Thymeleaf pour itérer à travers les techniciens -->
+    <tr th:each="technicien : ${techniciens}">
+        <td th:text="${technicien.nom}">Nom</td>
+        <td th:text="${technicien.email}">E-Mail</td>
+        <td th:text="${technicien.mot_de_passe}">Mot de passe</td>
+        <td>
+            <!-- Liens d'édition et de suppression des techniciens -->
+            <a th:href="@{/listTechniciens/edit/{id}(id=${technicien.id})}" class="action-icon"><i class="fas fa-edit"></i></a>
+            <a th:href="@{/listTechniciens/delete/{id}(id=${technicien.id})}" class="action-icon"><i class="fas fa-trash-alt"></i></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Lien vers la page pour ajouter un nouveau technicien -->
+<a th:href="@{/listTechniciens/new}" class="btn">Ajouter un nouveau Technicien</a>
+
+</body>
+</html>

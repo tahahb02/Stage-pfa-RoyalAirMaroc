@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Éditer Avion</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/edit_avion.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<nav>
+    <a href="/">Accueil</a>
+    <a href="/avions">Liste des Avions</a>
+    <a href="/avions/new">Ajouter un Avion</a>
+</nav>
+<h1>Éditer Avion</h1>
+<form th:action="@{/avions/{id}(id=${avion.id})}" th:object="${avion}" method="post" class="form-edit">
+    <label>Nom: <input type="text" th:field="*{nom}" /></label><br/>
+    <label>Type: <input type="text" th:field="*{type}" /></label><br/>
+    <label>Capacité: <input type="number" th:field="*{capacite}" /></label><br/>
+    <label>État:
+        <select th:field="*{etat}">
+            <option value="en_reparation" th:selected="${avion.etat == 'en_reparation'}">Réparer</option>
+            <option value="en_cours_de_reparation" th:selected="${avion.etat == 'en_cours_de_reparation'}">En cours de réparation</option>
+            <option value="irreparable" th:selected="${avion.etat == 'irreparable'}">Irréparable</option>
+        </select>
+    </label><br/>
+    <button type="submit" class="btn">Enregistrer</button>
+</form>
+<a th:href="@{/avions}" class="btn">Retour à la liste</a>
+</body>
+</html>

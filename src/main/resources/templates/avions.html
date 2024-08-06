@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Avions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/avions.css}">
+</head>
+<body>
+<nav>
+    <a href="/">Accueil</a>
+    <a href="/avions">Liste des Avions</a>
+    <a href="/avions/new">Ajouter un Avion</a>
+</nav>
+<h1>Liste des Avions</h1>
+
+<div class="search-container">
+    <form th:action="@{/avions}" method="get">
+        <input type="text" name="search" placeholder="Rechercher un avion" />
+        <button type="submit"><i class="fas fa-search"></i> Rechercher</button>
+    </form>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Type</th>
+        <th>Capacité</th>
+        <th>État</th>
+        <th>Date d'ajout</th>
+        <th>Actions État</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="avion : ${avions}">
+        <td th:text="${avion.nom}">Nom</td>
+        <td th:text="${avion.type}">Type</td>
+        <td th:text="${avion.capacite}">Capacité</td>
+        <td th:text="${avion.etat}">État</td>
+        <td th:text="${#dates.format(avion.dateAjout, 'dd/MM/yyyy HH:mm')}">Date d'ajout</td>
+        <td>
+            <a th:if="${avion.etat == 'en_reparation'}" th:href="@{/avions/reparer/{id}(id=${avion.id})}" class="action-icon"><i class="fas fa-wrench"></i> Réparer</a>
+            <a th:if="${avion.etat == 'en_cours_de_reparation'}" th:href="@{/avions/encoursdereparation/{id}(id=${avion.id})}" class="action-icon"><i class="fas fa-cogs"></i> En cours de réparation</a>
+            <a th:if="${avion.etat == 'irreparable'}" th:href="@{/avions/irreparable/{id}(id=${avion.id})}" class="action-icon"><i class="fas fa-times-circle"></i> Irréparable</a>
+        </td>
+        <td>
+            <a th:href="@{/avions/edit/{id}(id=${avion.id})}" class="action-icon"><i class="fas fa-edit"></i> Éditer</a>
+            <a th:href="@{/avions/delete/{id}(id=${avion.id})}" class="action-icon"><i class="fas fa-trash-alt"></i> Supprimer</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/avions/new}" class="btn">Ajouter un nouvel avion</a>
+</body>
+</html>

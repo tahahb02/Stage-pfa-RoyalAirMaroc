@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Superviseur</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/home_sup.css}">
+
+</head>
+<body>
+<div class="container">
+    <div class="sidebar">
+        <h2>Superviseur</h2>
+        <ul>
+            <li><a th:href="@{/superviseur/dashboard}">Dashboard</a></li>
+            <li><a th:href="@{/listTechniciens}">Gérer Techniciens</a></li>
+            <li><a th:href="@{/pieces}">Gérer Pièces</a></li>
+            <li><a th:href="@{/superviseur/maintenances}">Maintenance Planifier</a></li>
+            <li><a th:href="@{/superviseur/maintenances}">Superviser Maintenances</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="navbar">
+            <h1>Dashboard Superviseur</h1>
+            <div class="nav-links">
+                <a th:href="@{/logout}">Déconnexion</a>
+            </div>
+        </div>
+        <div class="main-content">
+            <!-- Contenu spécifique à la page -->
+            <p>Bienvenue sur le tableau de bord du superviseur.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
