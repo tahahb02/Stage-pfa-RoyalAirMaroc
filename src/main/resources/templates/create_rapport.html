@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Rédiger un Rapport</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/create_rapport.css}">
+</head>
+<body>
+<nav>
+    <a href="/home_tech">Accueil</a>
+    <a href="/mesRapports">Liste de Mes Rapports</a>
+    <a href="/rapports/new">Nouveau Rapport</a>
+</nav>
+<h1>Rédiger un Rapport</h1>
+
+<form th:action="@{/mesRapports}" method="post">
+    <label for="nomTechnicien">Nom du Technicien:</label><br>
+    <input type="text" id="nomTechnicien" name="nomTechnicien" required><br><br>
+
+    <label for="titre">Titre du Rapport:</label><br>
+    <input type="text" id="titre" name="titre" required><br><br>
+
+    <label for="contenu">Contenu du Rapport:</label><br>
+    <textarea id="contenu" name="contenu" rows="6" required></textarea><br><br>
+
+    <button type="submit" class="btn">Enregistrer</button>
+</form>
+</body>
+</html>

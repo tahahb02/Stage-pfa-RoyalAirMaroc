@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.xproce.pfaram.entity.Avion;
+import org.xproce.pfaram.entity.PiecesDetachee;
 import org.xproce.pfaram.service.AvionService;
 
 @Controller
@@ -33,7 +34,7 @@ public class AvionController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editAvionForm(@PathVariable Long id, Model model) {
+    public String editAvionForm(@PathVariable int id, Model model) {
         Avion avion = avionService.getAvionById(id);
         if (avion != null) {
             model.addAttribute("avion", avion);
@@ -45,19 +46,29 @@ public class AvionController {
 
     @PostMapping("/edit/{id}")
     public String updateAvion(@PathVariable int id, @ModelAttribute("avion") Avion avion) {
-        avion.setId(id);
-        avionService.updateAvion(avion);
-        return "redirect:/avions"; // Redirige vers la liste des avions après la mise à jour
+        // Retrieve the existing piece from the database
+        Avion existingAvion = avionService.getAvionById(id);
+
+        if (existingAvion != null) {
+            existingAvion.setNom(avion.getNom());
+            existingAvion.setCapacite(avion.getCapacite());
+            existingAvion.setEtat(avion.getEtat());
+            existingAvion.setType(avion.getType());
+
+            avionService.updateAvion(existingAvion);
+        }
+
+        return "redirect:/avions";
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteAvion(@PathVariable Long id) {
+    public String deleteAvion(@PathVariable int id) {
         avionService.deleteAvionById(id);
         return "redirect:/avions"; // Redirige vers la liste des avions après la suppression
     }
 
     @GetMapping("/reparer/{id}")
-    public String reparerAvion(@PathVariable Long id) {
+    public String reparerAvion(@PathVariable int id) {
         Avion avion = avionService.getAvionById(id);
         if (avion != null) {
             avion.setEtat("reparer");
@@ -67,7 +78,7 @@ public class AvionController {
     }
 
     @GetMapping("/encoursdereparation/{id}")
-    public String encoursdereparationAvion(@PathVariable Long id) {
+    public String encoursdereparationAvion(@PathVariable int id) {
         Avion avion = avionService.getAvionById(id);
         if (avion != null) {
             avion.setEtat("en_cours_de_reparation");
@@ -77,7 +88,7 @@ public class AvionController {
     }
 
     @GetMapping("/irreparable/{id}")
-    public String irreparableAvion(@PathVariable Long id) {
+    public String irreparableAvion(@PathVariable int id) {
         Avion avion = avionService.getAvionById(id);
         if (avion != null) {
             avion.setEtat("irreparable");

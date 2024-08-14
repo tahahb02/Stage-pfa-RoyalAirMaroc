@@ -1,23 +1,24 @@
 package org.xproce.pfaram.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.xproce.pfaram.entity.PiecesDetachee;
-import org.xproce.pfaram.service.PiecesDetacheeService;
+import org.xproce.pfaram.Classes.User;
+
 
 @Controller
 public class HomeController {
 
     @GetMapping("/home_sup")
     public String homeSup() {
-        return "home_sup"; // Ensure this matches the name of your Thymeleaf template
+        if(User.isUserSupervisor) return "home_sup";
+        else return "home_tech";
     }
 
     @GetMapping("/home_tech")
     public String homeTech() {
-        return "home_tech"; // Ensure this matches the name of your Thymeleaf template
+
+        if(User.isUserTechnician) return "home_tech";
+        else return "home_sup";
     }
 
     @GetMapping("/")

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import org.xproce.pfaram.entity.Utilisateur;
 import org.xproce.pfaram.service.UtilisateurServiceImpl;
 
+import org.xproce.pfaram.Classes.User;
+
 @Controller
 public class LoginController {
 
@@ -29,6 +31,8 @@ public class LoginController {
         // Check if user exists and password matches
         if (user != null && user.getMot_de_passe().equals(password)) { // For real applications, compare hashed passwords
             if (role.equalsIgnoreCase(user.getRole())) {
+                User.setCurrentUser(user.getNom(),user.getEmail(),user.getMot_de_passe(),user.getPrenom(),user.getRole());
+                System.out.println("User Role: " + user.getRole());
                 if ("technicien".equalsIgnoreCase(user.getRole())) {
                     return "redirect:/home_tech";
                 } else if ("superviseur".equalsIgnoreCase(user.getRole())) {

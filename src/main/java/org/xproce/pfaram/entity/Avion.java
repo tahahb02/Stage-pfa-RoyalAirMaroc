@@ -1,10 +1,7 @@
 package org.xproce.pfaram.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDateTime;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Avion {
@@ -16,7 +13,7 @@ public class Avion {
     private String type;
     private int capacite;
     private String etat; // Ajouter le champ etat
-    private LocalDateTime dateAjout;
+    private Date dateAjout;
 
     // Getters et Setters
 
@@ -60,11 +57,16 @@ public class Avion {
         this.etat = etat;
     }
 
-    public LocalDateTime getDateAjout() {
+    public Date getDateAjout() {
         return dateAjout;
     }
 
-    public void setDateAjout(LocalDateTime dateAjout) {
+    public void setDateAjout(Date dateAjout) {
         this.dateAjout = dateAjout;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        dateAjout = new Date();
     }
 }

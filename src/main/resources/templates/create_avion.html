@@ -11,7 +11,7 @@
     <a href="/avions.html">Liste des Avions</a>
 </nav>
 <h1>Créer Avion</h1>
-<form th:action="@{/avions/{id}(id=${avion.id})}" th:object="${avion}" method="post">
+<form th:action="@{/avions}" th:object="${avion}" method="post">
     <label>Nom: <input type="text" th:field="*{nom}" /></label><br/>
     <label>Type: <input type="text" th:field="*{type}" /></label><br/>
     <label>Capacité: <input type="number" th:field="*{capacite}" /></label><br/>

@@ -12,7 +12,7 @@
     <a href="/avions/new">Ajouter un Avion</a>
 </nav>
 <h1>Éditer Avion</h1>
-<form th:action="@{/avions/{id}(id=${avion.id})}" th:object="${avion}" method="post" class="form-edit">
+<form th:action="@{/avions/edit/{id}(id=${avion.id})}" th:object="${avion}" method="post" class="form-edit">
     <label>Nom: <input type="text" th:field="*{nom}" /></label><br/>
     <label>Type: <input type="text" th:field="*{type}" /></label><br/>
     <label>Capacité: <input type="number" th:field="*{capacite}" /></label><br/>

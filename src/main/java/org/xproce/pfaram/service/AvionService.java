@@ -8,11 +8,11 @@ public interface AvionService {
 
     List<Avion> getAllAvions();
 
-    Avion getAvionById(Long id);
+    Avion getAvionById(int id);
 
     void saveAvion(Avion avion);
 
     void updateAvion(Avion avion);
 
-    void deleteAvionById(Long id);
+    void deleteAvionById(int id);
 }

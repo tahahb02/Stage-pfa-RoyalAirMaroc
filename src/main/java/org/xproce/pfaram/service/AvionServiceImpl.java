@@ -22,7 +22,7 @@ public class AvionServiceImpl implements AvionService {
     }
 
     @Override
-    public Avion getAvionById(Long id) {
+    public Avion getAvionById(int id) {
         Optional<Avion> optionalAvion = avionRepository.findById(id);
         return optionalAvion.orElse(null);
     }
@@ -33,12 +33,8 @@ public class AvionServiceImpl implements AvionService {
     }
 
     @Override
-    public void updateAvion(Avion avion) {
-        avionRepository.save(avion); // La méthode save de JpaRepository gère à la fois l'ajout et la mise à jour
-    }
+    public void updateAvion(Avion avion) { avionRepository.save(avion); } // La méthode save de JpaRepository gère à la fois l'ajout et la mise à jour
 
     @Override
-    public void deleteAvionById(Long id) {
-        avionRepository.deleteById(id);
-    }
+    public void deleteAvionById(int id) { avionRepository.deleteById(id); }
 }
