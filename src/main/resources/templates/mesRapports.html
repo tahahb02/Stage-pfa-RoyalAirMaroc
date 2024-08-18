@@ -3,18 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Mes Rapports</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/styles/create_rapport.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/mesRapports.css}">
 </head>
 <body>
 <nav>
-    <a href="/home_tech">Accueil</a>
-    <a href="/mesRapports">Liste des Rapports</a>
-    <a href="/rapports/new">Nouveau Rapport</a>
+    <a th:href="@{/home_tech}">Accueil</a>
+    <a th:href="@{/mesRapports}">Liste des Rapports</a>
+    <a th:href="@{/rapports/new}">Nouveau Rapport</a>
 </nav>
 <h1>Mes Rapports</h1>
 
-<!--Tableau des Rapports-->
-
+<table>
+    <thead>
+    <tr>
+        <th>Nom du Technicien</th>
+        <th>Titre</th>
+        <th>Contenu</th>
+        <th>Date de Création</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="rapport : ${rapports}">
+        <td th:text="${rapport.nomTechnicien}"></td>
+        <td th:text="${rapport.titre}"></td>
+        <td th:text="${#strings.substring(rapport.contenu, 0, 50) + '...'}"></td>
+        <td th:text="${rapport.dateCreation}"></td>
+        <td>
+            <a th:href="@{/rapports/{id}(id=${rapport.id})}" class="view-all-link">View All</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 
 </body>
 </html>
