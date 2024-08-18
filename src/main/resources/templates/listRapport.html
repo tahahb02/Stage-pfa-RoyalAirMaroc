@@ -2,17 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Liste des Rapport</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/styles/create_rapport.css}">
+    <title>Liste Des Rapports</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/listRapport.css}">
 </head>
 <body>
 <nav>
-    <a href="/">Accueil</a>
-    <a href="/rapports">Liste des Rapports</a>
-    <a href="/rapports/new">Nouveau Rapport</a>
+    <a th:href="@{/home_sup}">Accueil</a>
+    <a th:href="@{/listRapport}">Liste des Rapports</a>
 </nav>
-<h1>Liste des Rapport</h1>
+<h1>Liste Des Rapports</h1>
 
+<table>
+    <thead>
+    <tr>
+        <th>Nom du Technicien</th>
+        <th>Titre</th>
+        <th>Contenu</th>
+        <th>Date de Création</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="rapport : ${rapports}">
+        <td th:text="${rapport.nomTechnicien}"></td>
+        <td th:text="${rapport.titre}"></td>
+        <td>
+            <span th:text="${@rapportServiceImpl.truncateWords(rapport.contenu, 10)}"></span>
+            <a th:href="@{/rapports/{id}(id=${rapport.id})}" class="view-all-link">View All</a>
+        </td>
+        <td th:text="${formattedDates[rapport.id]}"></td>
+    </tr>
+    </tbody>
+</table>
 
 </body>
 </html>

@@ -1,10 +1,11 @@
-/* General Styles */
+/* Reset CSS */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* Body styling */
 body {
     font-family: Arial, sans-serif;
     background-color: #121212;
@@ -12,7 +13,7 @@ body {
     padding: 20px;
 }
 
-/* Navigation Styles */
+/* Navbar styling */
 nav {
     display: flex;
     justify-content: flex-start;
@@ -36,33 +37,54 @@ nav a:hover {
     color: #000000;
 }
 
-/* Heading Styles */
 h1 {
     color: #f1c40f;
     margin-bottom: 20px;
-    text-align: center; /* Center the title */
+    text-align: center;
 }
 
-/* Content Container Styles */
-div {
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ffffff;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
     background-color: #1f1f1f;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    margin: 25px 30% 30% 30%;
+    text-align: center; /* Centrer le texte des en-têtes de colonnes */
 }
 
-/* Paragraph Styles */
-p {
-    margin-bottom: 15px;
-    line-height: 1.5;
+td {
+    background-color: #2e2e2e;
 }
 
-p strong {
-    color: #f1c40f;
+/* Textbox styling */
+input[type="text"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    background-color: #2e2e2e;
+    color: #ffffff;
 }
 
-/* Button Styles */
+input[type="text"]:focus {
+    border-color: #f1c40f;
+    outline: none;
+}
+
+/* Button styling */
 .btn {
     display: inline-block;
     background-color: #f1c40f;
@@ -71,7 +93,6 @@ p strong {
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
-    margin-top: 20px;
 }
 
 .btn:hover {

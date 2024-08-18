@@ -10,19 +10,29 @@ public class HomeController {
 
     @GetMapping("/home_sup")
     public String homeSup() {
-        if(User.isUserSupervisor) return "home_sup";
-        else return "home_tech";
+        return dashboardChooserHelper();
     }
 
     @GetMapping("/home_tech")
     public String homeTech() {
 
-        if(User.isUserTechnician) return "home_tech";
-        else return "home_sup";
+        return dashboardChooserHelper();
     }
 
     @GetMapping("/")
     public String redirectToLogin() {
+
         return "redirect:/login";
     }
+
+    public String dashboardChooserHelper()
+    {
+        if(User.isUserLoggedIn)
+        {
+            if(User.isUserTechnician) return "home_tech";
+            else return "home_sup";
+        }
+        else return "/login";
+    }
+
 }

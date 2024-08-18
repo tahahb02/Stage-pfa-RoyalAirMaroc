@@ -20,18 +20,17 @@
         <th>Titre</th>
         <th>Contenu</th>
         <th>Date de Création</th>
-        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="rapport : ${rapports}">
         <td th:text="${rapport.nomTechnicien}"></td>
         <td th:text="${rapport.titre}"></td>
-        <td th:text="${#strings.substring(rapport.contenu, 0, 50) + '...'}"></td>
-        <td th:text="${rapport.dateCreation}"></td>
         <td>
+            <span th:text="${@rapportServiceImpl.truncateWords(rapport.contenu, 10)}"></span>
             <a th:href="@{/rapports/{id}(id=${rapport.id})}" class="view-all-link">View All</a>
         </td>
+        <td th:text="${formattedDates[rapport.id]}"></td>
     </tr>
     </tbody>
 </table>

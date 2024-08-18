@@ -1,9 +1,11 @@
+/* Reset CSS */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* Body styling */
 body {
     font-family: Arial, sans-serif;
     background-color: #121212;
@@ -11,6 +13,7 @@ body {
     padding: 20px;
 }
 
+/* Navbar styling */
 nav {
     display: flex;
     justify-content: flex-start;
@@ -37,40 +40,10 @@ nav a:hover {
 h1 {
     color: #f1c40f;
     margin-bottom: 20px;
-    text-align: center; /* Centrer le titre */
+    text-align: center;
 }
 
-.search-container {
-    display: flex;
-    justify-content: flex-start;
-    margin-bottom: 20px;
-}
-
-.search-container input[type="text"] {
-    width: 300px;
-    padding: 10px;
-    border: 1px solid #ffffff;
-    border-radius: 5px 0 0 5px;
-    background-color: #2e2e2e;
-    color: #ffffff;
-}
-
-.search-container button {
-    padding: 10px 20px;
-    border: 1px solid #ffffff;
-    border-left: none;
-    border-radius: 0 5px 5px 0;
-    background-color: #f1c40f;
-    color: #000000;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.search-container button:hover {
-    background-color: #ffffff;
-    color: #000000;
-}
-
+/* Table styling */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -95,16 +68,23 @@ td {
     background-color: #2e2e2e;
 }
 
-.action-icon {
-    color: #f1c40f;
-    margin-right: 10px;
-    transition: color 0.3s;
-}
-
-.action-icon:hover {
+/* Textbox styling */
+.filterInput {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    background-color: #2e2e2e;
     color: #ffffff;
 }
 
+input[type="text"]:focus {
+    border-color: #f1c40f;
+    outline: none;
+}
+
+/* Button styling */
 .btn {
     display: inline-block;
     background-color: #f1c40f;

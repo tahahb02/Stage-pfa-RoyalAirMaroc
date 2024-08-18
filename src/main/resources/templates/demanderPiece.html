@@ -3,18 +3,17 @@
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" type="text/css" th:href="@{/styles/pieces.css}">
-    <title>Liste des Pièces Détachées</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/demanderPiece.css}">
+    <title>Liste des Pièces</title>
 </head>
 
 <body>
+
 <nav>
-    <a href="/home_sup">Accueil</a>
-    <a href="/pieces">Liste des Pièces</a>
-    <a href="/pieces/new">Ajouter une Pièce</a>
+    <a href="/home_tech">Accueil</a>
 </nav>
 
-<h1>Liste des Pièces Détachées</h1>
+<h1>Liste des Pièces</h1>
 
 <!-- Text box for filtering entries -->
 <div class="filter-container">
@@ -26,31 +25,19 @@
     <tr>
         <th>Nom</th>
         <th>Description</th>
-        <th>Prix/pcs</th>
         <th>Quantité</th>
         <th>Date d'ajout</th>
-        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-    <!-- Utilisation de Thymeleaf pour itérer à travers les pièces -->
     <tr th:each="piece : ${pieces}">
-        <td th:text="${piece.name}">Nom</td>
-        <td th:text="${piece.description}">Description</td>
-        <td th:text="${piece.price}">Prix</td>
-        <td th:text="${piece.quantity}">Quantité</td>
-        <td th:text="${#dates.format(piece.dateAjout, 'dd/MM/yyyy HH:mm')}">Date d'ajout</td>
-        <td>
-            <!-- Liens d'édition et de suppression des pièces -->
-            <a th:href="@{/pieces/edit/{id}(id=${piece.id})}" class="action-icon"><i class="fas fa-edit"></i></a>
-            <a th:href="@{/pieces/delete/{id}(id=${piece.id})}" class="action-icon"><i class="fas fa-trash-alt"></i></a>
-        </td>
+        <td th:text="${piece.name}"></td>
+        <td th:text="${piece.description}"></td>
+        <td th:text="${piece.quantity}"></td>
+        <td th:text="${piece.dateAjout}"></td>
     </tr>
     </tbody>
 </table>
-
-<!-- Lien vers la page pour ajouter une nouvelle pièce -->
-<a th:href="@{/pieces/new}" class="btn">Ajouter une nouvelle pièce</a>
 
 <script>
     function filterTable() {

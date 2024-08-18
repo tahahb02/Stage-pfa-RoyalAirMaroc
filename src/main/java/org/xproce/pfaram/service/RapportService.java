@@ -2,6 +2,7 @@ package org.xproce.pfaram.service;
 
 import org.xproce.pfaram.entity.Rapport;
 
+import java.util.Arrays;
 import java.util.List;
 
 public interface RapportService {

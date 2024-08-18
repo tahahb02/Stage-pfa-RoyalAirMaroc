@@ -1,10 +1,8 @@
 package org.xproce.pfaram.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 @Entity
 public class Rapport {
@@ -15,6 +13,8 @@ public class Rapport {
 
     private String nomTechnicien;
     private String titre;
+    @Lob
+    @Column(name="contenu", length=1024)
     private String contenu;
     private LocalDateTime dateCreation;
 
@@ -59,4 +59,6 @@ public class Rapport {
     public void setDateCreation(LocalDateTime dateCreation) {
         this.dateCreation = dateCreation;
     }
+
+
 }

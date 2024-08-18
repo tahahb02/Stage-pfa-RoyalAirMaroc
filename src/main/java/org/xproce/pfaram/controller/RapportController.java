@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.xproce.pfaram.entity.Rapport;
 import org.xproce.pfaram.service.RapportService;
 
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class RapportController {
@@ -20,7 +23,20 @@ public class RapportController {
     @GetMapping("/mesRapports")
     public String mesRapports(Model model) {
         List<Rapport> rapports = rapportService.findAllRapports();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy, HH:mm");
+
+        Map<Long, String> formattedDates = new HashMap<>();
+
+        for (Rapport rapport : rapports) {
+            String formattedDate = rapport.getDateCreation().format(formatter);
+            formattedDates.put(rapport.getId(), formattedDate);
+        }
+
+        model.addAttribute("formattedDates", formattedDates);
         model.addAttribute("rapports", rapports);
+
+
         return "mesRapports";
     }
 
@@ -30,17 +46,37 @@ public class RapportController {
         return "create_rapport";
     }
 
-    @PostMapping("/rapports")
+    @PostMapping("/mesRapports")
     public String saveRapport(Rapport rapport) {
         rapportService.saveRapport(rapport);
         return "redirect:/mesRapports";
     }
 
-    // Méthode pour afficher les détails d'un rapport
     @GetMapping("/rapports/{id}")
-    public String detailRapport(@PathVariable Long id, Model model) {
+    public String viewRapportDetails(@PathVariable Long id, Model model) {
         Rapport rapport = rapportService.findRapportById(id);
         model.addAttribute("rapport", rapport);
-        return "detail_rapport";
+        return "detailRapport";
+    }
+
+
+    @GetMapping("/listRapport")
+    public String getSupRapports(Model model) {
+        List<Rapport> rapports = rapportService.findAllRapports();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy, HH:mm");
+
+        Map<Long, String> formattedDates = new HashMap<>();
+
+        for (Rapport rapport : rapports) {
+            String formattedDate = rapport.getDateCreation().format(formatter);
+            formattedDates.put(rapport.getId(), formattedDate);
+        }
+
+        model.addAttribute("formattedDates", formattedDates);
+        model.addAttribute("rapports", rapports);
+
+
+        return "listRapport";
     }
 }

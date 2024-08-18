@@ -7,6 +7,7 @@ import org.xproce.pfaram.entity.Rapport;
 import org.xproce.pfaram.repository.RapportRepository;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,5 +38,13 @@ public class RapportServiceImpl implements RapportService {
     @Override
     public void deleteRapport(Long id) {
         rapportRepository.deleteById(id);
+    }
+
+    public static String truncateWords(String text, int wordCount) {
+        String[] words = text.split(" ");
+        if (words.length <= wordCount) {
+            return text;
+        }
+        return String.join(" ", Arrays.copyOfRange(words, 0, wordCount)) + "...";
     }
 }
