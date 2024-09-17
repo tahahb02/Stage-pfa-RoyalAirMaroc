@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Technicien | Créer Planing</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/create_avion.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<nav>
+    <a href="/home_tech">Accueil</a>
+    <a href="/planings">Liste des Planings</a>
+</nav>
+<h1>Créer Planing</h1>
+<form th:action="@{/planing}" th:object="${planing}" method="post">
+    <label>Nom De Technicien: <input type="text" th:field="*{nomDeTechnicien}" /></label><br/>
+    <label>Avion Associe <input type="text" th:field="*{avion}" /></label><br/>
+    <label>Objectif <input type="text" th:field="*{objectif}" /></label><br/>
+    <label>Description<textarea th:field="*{description}" rows="50" ></textarea></label><br/>
+    <button type="submit" class="btn">Enregistrer</button>
+</form>
+</body>
+</html>

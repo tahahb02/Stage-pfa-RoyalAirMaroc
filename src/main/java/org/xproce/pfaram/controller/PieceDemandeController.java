@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.xproce.pfaram.Classes.User;
 import org.xproce.pfaram.entity.PieceDemande;
 import org.xproce.pfaram.service.PieceDemandeService;
 
@@ -20,7 +21,7 @@ public class PieceDemandeController {
     @GetMapping("/piece/request/new")
     public String showCreatePieceForm(Model model) {
         model.addAttribute("piece", new PieceDemande());
-        return "newPieceDemande"; // Name of the Thymeleaf template
+        return "newPieceDemande";
     }
 
     // Method to handle form submission and save the piece
@@ -30,10 +31,15 @@ public class PieceDemandeController {
         return "redirect:/home_tech?message=success";
     }
 
-    // Method to display the list of pieces
-    @GetMapping("/piece/request")
-    public String listPieces(Model model) {
+    // TechPieces
+    @GetMapping("/techPieces")
+    public String getTechPieces(Model model)
+    {
         model.addAttribute("pieces", pieceDemandeService.findAllPieces());
-        return "demanderPiece"; // Name of the Thymeleaf template for listing pieces
+        return "techPieces";
     }
+
+    // TODO : L3entiz d taha, eafak matnsash tdir page wehdakhra dyal techPieces, ou smiah smiay mqada a si zb, ou mli dirh dir hadik if else l user ok bb ? lvy <3 mouah a777777
+
+
 }

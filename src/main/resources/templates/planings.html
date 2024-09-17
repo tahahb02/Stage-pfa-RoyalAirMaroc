@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Technicien | Liste des Planings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/avions.css}">
+</head>
+<body>
+<nav>
+    <a href="/home_tech">Accueil</a>
+    <a href="/planings">Liste des Planings</a>
+    <a href="/planings/new">Ajouter un Planing</a>
+</nav>
+<h1>Liste des Planings</h1>
+
+<div class="search-container">
+    <form th:action="@{/planings}" method="get">
+        <input type="text" name="search" placeholder="Rechercher un planing"/>
+        <button type="submit"><i class="fas fa-search"></i> Rechercher</button>
+    </form>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nom de Technicien</th>
+        <th>Avion Associe</th>
+        <th>Objectif</th>
+        <th>Description</th>
+        <th>Date de planification</th>
+        <th>Etat de Planing</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="planing : ${planings}">
+        <td th:text="${planing.nomDeTechnicien}">Nom</td>
+        <td th:text="${planing.avion}">Avion Associe</td>
+        <td th:text="${planing.objectif}">Objectif</td>
+        <td th:text="${planing.description}">Description</td>
+        <td th:text="${#dates.format(planing.datePlaning, 'dd/MM/yyyy HH:mm')}">Date de planification</td>
+        <td th:text="${planing.etatDeplaning}">Etat de Planing</td>
+        <td>
+            <a th:href="@{/planings/delete/{id}(id=${planing.id})}" class="action-icon"><i class="fas fa-trash-alt"></i>Supprimer</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/planings/new}" class="btn">Ajouter un nouveau Planing</a>
+</body>
+</html>

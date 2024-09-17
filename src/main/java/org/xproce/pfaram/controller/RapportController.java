@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.xproce.pfaram.entity.Rapport;
 import org.xproce.pfaram.service.RapportService;
 
+import org.xproce.pfaram.Classes.User;
+
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
@@ -36,8 +38,14 @@ public class RapportController {
         model.addAttribute("formattedDates", formattedDates);
         model.addAttribute("rapports", rapports);
 
-
-        return "mesRapports";
+        if (User.isUserTechnician)
+        {
+            return "mesRapports";
+        }
+        else
+        {
+            return "listRapport";
+        }
     }
 
     @GetMapping("/rapports/new")

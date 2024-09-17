@@ -1,6 +1,5 @@
 package org.xproce.pfaram.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +8,6 @@ import org.xproce.pfaram.entity.PiecesDetachee;
 import org.xproce.pfaram.service.PiecesDetacheeService;
 
 @Controller
-
 public class PiecesDetacheeController {
 
     @Autowired
@@ -73,12 +71,7 @@ public class PiecesDetacheeController {
         return "redirect:/pieces"; // Redirige vers la liste des pièces après la suppression
     }
 
-    // TechPieces
-    @GetMapping("/techPieces")
-    public String getTechPieces(Model model)
-    {
-        model.addAttribute("pieces", piecesDetacheeService.getAllPieces());
-        return "techPieces";
-    }
+
+
 
 }

@@ -8,20 +8,17 @@
 <body>
 <nav>
     <a href="/home_sup">Accueil</a>
-    <a href="/listTechniciens">Liste des Techniciens</a>
     <a href="/listTechniciens/new">Ajouter un Technicien</a>
 </nav>
 <h1>Liste des Techniciens</h1>
 
-<!-- Barre de recherche -->
+<!-- Text box for filtering entries -->
 <div class="search-container">
-    <form action="/listTechniciens/search" method="get" class="search-box">
-        <input type="text" name="query" class="search-input" placeholder="Rechercher un Technicien..." />
-        <button type="submit" class="search-button"><i class="fas fa-search"></i> Rechercher</button>
-    </form>
+    <input type="text" id="filterInput" placeholder="Rechercher une pièce..." onkeyup="filterTable()">
 </div>
 
-<table>
+
+<table id="techTable">
     <thead>
     <tr>
         <th>Nom</th>
@@ -49,6 +46,31 @@
 
 <!-- Lien vers la page pour ajouter un nouveau technicien -->
 <a th:href="@{/listTechniciens/new}" class="btn">Ajouter un nouveau Technicien</a>
+
+<script>
+    function filterTable() {
+        var input, filter, table, tr, td, i, j, txtValue;
+        input = document.getElementById("filterInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("techTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 1; i < tr.length; i++) {
+            tr[i].style.display = "none";
+            td = tr[i].getElementsByTagName("td");
+            for (j = 0; j < td.length; j++) {
+                if (td[j]) {
+                    txtValue = td[j].textContent || td[j].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        break;
+                    }
+                }
+            }
+        }
+    }
+</script>
+
 
 </body>
 </html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Avions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/avions.css}">
+</head>
+<body>
+<nav>
+    <a href="/home_sup">Accueil</a>
+</nav>
+<h1>Liste des Avions</h1>
+
+<div class="search-container">
+    <form th:action="@{/avions}" method="get">
+        <input type="text" name="search" placeholder="Rechercher un avion" />
+        <button type="submit"><i class="fas fa-search"></i> Rechercher</button>
+    </form>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Type</th>
+        <th>Capacité</th>
+        <th>État</th>
+        <th>Date d'ajout</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="avion : ${avions}">
+        <td th:text="${avion.nom}">Nom</td>
+        <td th:text="${avion.type}">Type</td>
+        <td th:text="${avion.capacite}">Capacité</td>
+        <td th:text="${avion.etat}">État</td>
+        <td th:text="${#dates.format(avion.dateAjout, 'dd/MM/yyyy HH:mm')}">Date d'ajout</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

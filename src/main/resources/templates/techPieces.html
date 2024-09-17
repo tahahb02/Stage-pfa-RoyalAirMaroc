@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <link rel="stylesheet" type="text/css" th:href="@{/styles/pieces.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" type="text/css" th:href="@{/styles/demanderPiece.css}">
   <title>Liste des Pièces Disponibles</title>
 
 </head>
 <body>
 <nav>
   <a href="/home_tech">Accueil</a>
-  <a href="/demanderPiece">Demander une nouvelle Piece</a>
+  <a href="/piece/request/new">Demander une nouvelle Piece</a>
 </nav>
 <h1>Liste des Pièces Disponibles</h1>
 
 <!-- Barre de recherche -->
-<div class="search-container">
-  <form action="/pieces/search" method="get" class="search-box">
-    <input type="text" name="query" class="search-input" placeholder="Rechercher une pièce..." />
-    <button type="submit" class="search-button"><i class="fas fa-search"></i> Rechercher</button>
-  </form>
+<div class="filter-container">
+  <input type="text" id="filterInput" placeholder="Rechercher une pièce..." onkeyup="filterTable()">
 </div>
 
 <!--Tableau Des pieces-->
@@ -38,6 +37,30 @@
   </tr>
   </tbody>
 </table>
+
+<script>
+  function filterTable() {
+    var input, filter, table, tr, td, i, j, txtValue;
+    input = document.getElementById("filterInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("piecesTable");
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 1; i < tr.length; i++) {
+      tr[i].style.display = "none";
+      td = tr[i].getElementsByTagName("td");
+      for (j = 0; j < td.length; j++) {
+        if (td[j]) {
+          txtValue = td[j].textContent || td[j].innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+            break;
+          }
+        }
+      }
+    }
+  }
+</script>
 
 
 </body>

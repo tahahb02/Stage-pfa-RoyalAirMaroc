@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.xproce.pfaram.entity.Avion;
-import org.xproce.pfaram.entity.PiecesDetachee;
 import org.xproce.pfaram.service.AvionService;
 
 @Controller
@@ -19,6 +18,12 @@ public class AvionController {
     public String listAvions(Model model) {
         model.addAttribute("avions", avionService.getAllAvions());
         return "avions"; // Redirige vers le template Thymeleaf 'avions.html'
+    }
+
+    @GetMapping("/superviseur")
+    public String listAvionsSup(Model model) {
+        model.addAttribute("avions", avionService.getAllAvions());
+        return "voirAvionsSup"; // Redirige vers le template Thymeleaf 'avions.html'
     }
 
     @GetMapping("/new")

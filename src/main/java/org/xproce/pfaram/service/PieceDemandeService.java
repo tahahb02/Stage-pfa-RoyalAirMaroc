@@ -22,4 +22,6 @@ public class PieceDemandeService {
     public List<PieceDemande> findAllPieces() {
         return pieceDemandeRepository.findAll();
     }
+
+
 }
