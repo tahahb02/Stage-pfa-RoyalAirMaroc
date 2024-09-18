@@ -38,7 +38,7 @@
         <td th:text="${planing.avion}">Avion Associe</td>
         <td th:text="${planing.objectif}">Objectif</td>
         <td th:text="${planing.description}">Description</td>
-        <td th:text="${#dates.format(planing.datePlaning, 'dd/MM/yyyy HH:mm')}">Date de planification</td>
+        <td th:text="${#temporals.format(planing.datePlaning, 'yyyy-MM-dd''T''HH:mm')}">Date de planification</td>
         <td th:text="${planing.etatDeplaning}">Etat de Planing</td>
         <td>
             <a th:href="@{/planings/delete/{id}(id=${planing.id})}" class="action-icon"><i class="fas fa-trash-alt"></i>Supprimer</a>

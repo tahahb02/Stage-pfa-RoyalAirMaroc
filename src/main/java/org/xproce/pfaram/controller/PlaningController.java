@@ -78,7 +78,7 @@ public class PlaningController {
             planing.setEtatDeplaning("Accepte");
             planingService.updatePlaning(planing);
         }
-        return "redirect:/planings";
+        return "redirect:/planings/superviseur";
     }
 
     @GetMapping("/refuse/{id}")
@@ -88,7 +88,7 @@ public class PlaningController {
             planing.setEtatDeplaning("Refuse");
             planingService.updatePlaning(planing);
         }
-        return "redirect:/planings";
+        return "redirect:/planings/superviseur";
     }
 
 }

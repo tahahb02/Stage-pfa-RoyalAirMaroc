@@ -1,7 +1,9 @@
 package org.xproce.pfaram.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 public class Planing {
@@ -46,11 +48,11 @@ public class Planing {
         this.description = description;
     }
 
-    public Date getDatePlaning() {
+    public LocalDateTime getDatePlaning() {
         return datePlaning;
     }
 
-    public void setDatePlaning(Date datePlaning) {
+    public void setDatePlaning(LocalDateTime datePlaning) {
         this.datePlaning = datePlaning;
     }
 
@@ -60,11 +62,6 @@ public class Planing {
 
     public void setEtatDeplaning(String etatDeplaning) {
         this.etatDeplaning = etatDeplaning;
-    }
-
-    @PrePersist
-    protected void onCreate() {
-        datePlaning = new Date();
     }
 
 
@@ -79,7 +76,8 @@ public class Planing {
 
 
     private String etatDeplaning;
-    private Date datePlaning;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) // ISO 8601 format
+    private LocalDateTime datePlaning; // Changed from Date to LocalDateTime
 
 
 }

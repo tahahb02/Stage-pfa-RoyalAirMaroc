@@ -26,12 +26,17 @@ public class LoginController {
                             @RequestParam String role,
                             Model model) {
 
+        if (email.equalsIgnoreCase("admin@admin.com") && password.equals("admin") && role.equalsIgnoreCase("Admin") )
+        {
+            return "redirect:/administration";
+        }
+
         Utilisateur user = userService.findByEmail(email);
 
         // Check if user exists and password matches
         if (user != null && user.getMot_de_passe().equals(password)) { // For real applications, compare hashed passwords
             if (role.equalsIgnoreCase(user.getRole())) {
-                User.setCurrentUser(user.getNom(),user.getEmail(),user.getMot_de_passe(),user.getPrenom(),user.getRole());
+                User.setCurrentUser(user.getNom(), user.getEmail(), user.getMot_de_passe(), user.getPrenom(), user.getRole());
                 System.out.println("User Role: " + user.getRole());
                 if ("technicien".equalsIgnoreCase(user.getRole())) {
                     return "redirect:/home_tech";
@@ -42,8 +47,7 @@ public class LoginController {
                 model.addAttribute("error", "Role mismatch.");
                 return "login"; // Redirect back to login page with error
             }
-        }
-        else {
+        } else {
             model.addAttribute("error", "Invalid email or password.");
             return "login"; // Redirect back to login page with error
         }

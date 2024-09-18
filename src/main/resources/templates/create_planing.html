@@ -11,10 +11,11 @@
     <a href="/planings">Liste des Planings</a>
 </nav>
 <h1>Créer Planing</h1>
-<form th:action="@{/planing}" th:object="${planing}" method="post">
+<form th:action="@{/planings}" th:object="${planing}" method="post">
     <label>Nom De Technicien: <input type="text" th:field="*{nomDeTechnicien}" /></label><br/>
     <label>Avion Associe <input type="text" th:field="*{avion}" /></label><br/>
     <label>Objectif <input type="text" th:field="*{objectif}" /></label><br/>
+    <label>Date <input type="datetime-local" th:field="*{datePlaning}" /></label><br/>
     <label>Description<textarea th:field="*{description}" rows="50" ></textarea></label><br/>
     <button type="submit" class="btn">Enregistrer</button>
 </form>

@@ -62,8 +62,9 @@ form label {
 form input[type="text"],
 form input[type="number"],
 form select,
-form textarea { /* Apply same styles to textarea */
-    width: 100%;
+form textarea,
+form input[type="datetime-local"] { /* Added input[type="date"] here to match other inputs */
+    width: calc(100% - 22px);
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ffffff;
@@ -71,18 +72,14 @@ form textarea { /* Apply same styles to textarea */
     background-color: #2e2e2e;
     color: #ffffff;
     font-family: Arial, sans-serif;
-    font-size: 16px; /* Ensure consistent font size */
-}
-
-form textarea {
-    height: 150px; /* Set a reasonable default height for the textarea */
-    resize: none; /* Disable resizing if necessary */
+    font-size: 16px;
 }
 
 form input[type="text"]:focus,
 form input[type="number"]:focus,
 form select:focus,
-form textarea:focus { /* Add textarea focus state */
+form textarea:focus,
+form input[type="datetime-local"]:focus { /* Added input[type="date"] focus */
     border-color: #f1c40f;
     outline: none;
 }

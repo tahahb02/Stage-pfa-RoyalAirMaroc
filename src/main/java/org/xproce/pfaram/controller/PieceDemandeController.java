@@ -9,13 +9,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.xproce.pfaram.Classes.User;
 import org.xproce.pfaram.entity.PieceDemande;
+import org.xproce.pfaram.entity.PiecesDetachee;
 import org.xproce.pfaram.service.PieceDemandeService;
+import org.xproce.pfaram.service.PiecesDetacheeService;
+import org.xproce.pfaram.service.PiecesDetacheeServiceImpl;
 
 @Controller
 public class PieceDemandeController {
 
     @Autowired
     private PieceDemandeService pieceDemandeService;
+    @Autowired
+    private PiecesDetacheeService piecesDetacheeService;
 
     // Method to display the form for creating a new piece
     @GetMapping("/piece/request/new")
@@ -35,11 +40,16 @@ public class PieceDemandeController {
     @GetMapping("/techPieces")
     public String getTechPieces(Model model)
     {
-        model.addAttribute("pieces", pieceDemandeService.findAllPieces());
+        if (User.isUserTechnician)
+        {
+            model.addAttribute("pieces", piecesDetacheeService.getAllPieces());
+        }
+        else {
+            model.addAttribute("pieces", pieceDemandeService.findAllPieces());
+        }
+
         return "techPieces";
     }
-
-    // TODO : L3entiz d taha, eafak matnsash tdir page wehdakhra dyal techPieces, ou smiah smiay mqada a si zb, ou mli dirh dir hadik if else l user ok bb ? lvy <3 mouah a777777
 
 
 }

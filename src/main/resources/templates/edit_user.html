@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Éditer Utilisateur</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/styles/edit_technicien.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<nav>
+  <a href="/administration">Liste des Utilisateurs</a>
+</nav>
+<h1>Éditer Utilisateur</h1>
+
+<form th:action="@{/administration/edit/{id}(id=${utilisateur.id})}" th:object="${utilisateur}" method="post" class="form-edit-user">
+  <label>Nom: <input type="text" th:field="*{nom}" required /></label><br/>
+  <label>Prenom: <input type="text" th:field="*{prenom}" required /></label><br/>
+  <label>Email: <input type="email" th:field="*{email}" required /></label><br/>
+  <label>Mot de passe: <input type="password" th:field="*{mot_de_passe}" required /></label><br/>
+  <label>Rôle:
+    <select th:field="*{role}">
+      <option value="technicien" th:selected="${utilisateur.role == 'technicien'}">Technicien</option>
+      <option value="superviseur" th:selected="${utilisateur.role == 'superviseur'}">Superviseur</option>
+    </select>
+  </label><br/>
+  <button type="submit" class="btn">Enregistrer</button>
+</form>
+
+<a th:href="@{/administration}" class="btn">Retour à la liste</a>
+
+</body>
+</html>

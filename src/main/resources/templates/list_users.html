@@ -3,56 +3,54 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/styles/listTechniciens.css}">
-    <title>Liste des Techniciens</title>
+    <title>Liste des Utilisateurs</title>
 </head>
 <body>
 <nav>
-    <a href="/home_sup">Accueil</a>
-    <a href="/listTechniciens/new">Ajouter un Technicien</a>
+    <a href="/administration/new">Ajouter un Utilisateur</a>
 </nav>
-<h1>Liste des Techniciens</h1>
+<h1>Liste des Utilisateurs</h1>
 
 <!-- Text box for filtering entries -->
 <div class="search-container">
-    <input type="text" id="filterInput" placeholder="Rechercher un Technicien..." onkeyup="filterTable()">
+    <input type="text" id="filterInput" placeholder="Rechercher un utilisateur..." onkeyup="filterTable()">
 </div>
 
-
-<table id="techTable">
+<table id="userTable">
     <thead>
     <tr>
         <th>Nom</th>
         <th>Prenom</th>
         <th>E-Mail</th>
-        <th>Mot de passe</th>
+        <th>Rôle</th>
         <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-    <!-- Utilisation de Thymeleaf pour itérer à travers les techniciens -->
-    <tr th:each="technicien : ${techniciens}">
-        <td th:text="${technicien.nom}">Nom</td>
-        <td th:text="${technicien.prenom}">Prenom</td>
-        <td th:text="${technicien.email}">E-Mail</td>
-        <td th:text="${technicien.mot_de_passe}">Mot de passe</td>
+    <!-- Utilisation de Thymeleaf pour itérer à travers les utilisateurs -->
+    <tr th:each="utilisateur : ${users}">
+        <td th:text="${utilisateur.nom}">Nom</td>
+        <td th:text="${utilisateur.prenom}">Prenom</td>
+        <td th:text="${utilisateur.email}">E-Mail</td>
+        <td th:text="${utilisateur.role}">Rôle</td>
         <td>
-            <!-- Liens d'édition et de suppression des techniciens -->
-            <a th:href="@{/listTechniciens/edit/{id}(id=${technicien.id})}" class="action-icon"><i class="fas fa-edit"></i></a>
-            <a th:href="@{/listTechniciens/delete/{id}(id=${technicien.id})}" class="action-icon"><i class="fas fa-trash-alt"></i></a>
+            <!-- Liens d'édition et de suppression des utilisateurs -->
+            <a th:href="@{/administration/edit/{id}(id=${utilisateur.id})}" class="action-icon"><i class="fas fa-edit"></i></a>
+            <a th:href="@{/administration/delete/{id}(id=${utilisateur.id})}" class="action-icon"><i class="fas fa-trash-alt"></i></a>
         </td>
     </tr>
     </tbody>
 </table>
-
 <!-- Lien vers la page pour ajouter un nouveau technicien -->
-<a th:href="@{/listTechniciens/new}" class="btn">Ajouter un nouveau Technicien</a>
+<a href="administration/new" class="btn">Ajouter un nouveau Technicien</a>
+
 
 <script>
     function filterTable() {
         var input, filter, table, tr, td, i, j, txtValue;
         input = document.getElementById("filterInput");
         filter = input.value.toUpperCase();
-        table = document.getElementById("techTable");
+        table = document.getElementById("userTable");
         tr = table.getElementsByTagName("tr");
 
         for (i = 1; i < tr.length; i++) {
@@ -70,7 +68,6 @@
         }
     }
 </script>
-
 
 </body>
 </html>

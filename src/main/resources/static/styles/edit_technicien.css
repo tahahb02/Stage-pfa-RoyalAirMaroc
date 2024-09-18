@@ -71,11 +71,25 @@ form input[type="number"] {
     background-color: #2e2e2e;
     color: #ffffff;
 }
+form select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    background-color: #2e2e2e;
+    color: #ffffff;
+    transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
 
 form input[type="text"]:focus,
 form input[type="email"]:focus,
 form input[type="password"]:focus,
 form input[type="number"]:focus {
+    border-color: #f1c40f;
+    outline: none;
+}
+form select:focus {
     border-color: #f1c40f;
     outline: none;
 }

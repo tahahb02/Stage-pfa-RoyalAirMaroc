@@ -12,13 +12,10 @@
 <h1>Liste des Avions</h1>
 
 <div class="search-container">
-    <form th:action="@{/avions}" method="get">
-        <input type="text" name="search" placeholder="Rechercher un avion" />
-        <button type="submit"><i class="fas fa-search"></i> Rechercher</button>
-    </form>
+    <input type="text" id="filterInput" placeholder="Rechercher une Avion..." onkeyup="filterTable()">
 </div>
 
-<table>
+<table id="avionTable">
     <thead>
     <tr>
         <th>Nom</th>
@@ -38,6 +35,29 @@
     </tr>
     </tbody>
 </table>
+<script>
+    function filterTable() {
+        var input, filter, table, tr, td, i, j, txtValue;
+        input = document.getElementById("filterInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("avionTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 1; i < tr.length; i++) {
+            tr[i].style.display = "none";
+            td = tr[i].getElementsByTagName("td");
+            for (j = 0; j < td.length; j++) {
+                if (td[j]) {
+                    txtValue = td[j].textContent || td[j].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        break;
+                    }
+                }
+            }
+        }
+    }
+</script>
 
 </body>
 </html>
