@@ -64,6 +64,7 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
+    overflow: hidden; /* Hide overflow content */
 }
 
 .navbar {
@@ -92,16 +93,18 @@ body {
 }
 
 .main-content {
-    flex-grow: 1;
-    margin-top: 20px;
     position: relative;
-    background-size: 1000px !important; /* Set the size of the background */
-    opacity: 0.2; /* Optional: Make the image semi-transparent */
-    transform: rotate(-45deg); /* Rotate the image diagonally */
     background: url('https://industries.ma/wp-content/uploads/2015/10/sd_ram2.png') no-repeat center;
+    background-size: 700px;
+    opacity: 0.2;
+    transform: rotate(-45deg);
+    height: calc(100vh - 60px);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Ensure that the text is still visible on top of the background */
 .main-content p {
     position: relative;
     z-index: 1;
